@@ -1,4 +1,4 @@
-package com.chutyrooms.mvvmnews
+package com.chutyrooms.mvvmnews.utils
 
 class Constants {
 

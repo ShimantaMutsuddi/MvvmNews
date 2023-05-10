@@ -1,11 +1,10 @@
 package com.chutyrooms.mvvmnews.api
 
-import com.chutyrooms.mvvmnews.Constants.Companion.BASE_URL
+import com.chutyrooms.mvvmnews.utils.Constants.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class RetrofitInstance {
 

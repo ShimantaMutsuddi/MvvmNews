@@ -1,7 +1,7 @@
 package com.chutyrooms.mvvmnews.api
 
-import com.chutyrooms.mvvmnews.Constants.Companion.API_KEY
-import com.chutyrooms.mvvmnews.NewsResponse
+import com.chutyrooms.mvvmnews.utils.Constants.Companion.API_KEY
+import com.chutyrooms.mvvmnews.models.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
