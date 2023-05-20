@@ -3,10 +3,10 @@ package com.chutyrooms.mvvmnews.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
-import androidx.navigation.Navigation.findNavController
+
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI.setupWithNavController
+import androidx.navigation.fragment.NavHostFragment
+
 import androidx.navigation.ui.setupWithNavController
 import com.chutyrooms.mvvmnews.R
 import com.chutyrooms.mvvmnews.db.ArticleDatabase
@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class NewsActivity : AppCompatActivity() {
 
-    lateinit var viewModel:NewsViewModel
+     var viewModel:NewsViewModel?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +25,14 @@ class NewsActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
         //nav controller is an object that manages app navigation within a NavHost
-        val navController=findNavController(R.id.newsNavHostFragment)
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
+        val navController = navHostFragment.navController
+       // val navController= NavHostFragment.findNavController(R.id.newsNavHosContFragment)
 
         val newsRepository=NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory=NewsViewModelProviderFactory(newsRepository)
-        viewModel=ViewModelProvider(this,viewModelProviderFactory).get(NewsViewModel::class.java)
+        viewModel= ViewModelProvider(this,viewModelProviderFactory)[NewsViewModel::class.java]
         bottomNavigationView.setupWithNavController(navController)
 
 

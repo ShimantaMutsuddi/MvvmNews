@@ -14,13 +14,14 @@ import com.chutyrooms.mvvmnews.models.Article
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
 
-     class ArticleViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
+     inner class ArticleViewHolder(itemView: View):RecyclerView.ViewHolder(itemView)
      {
          val imageView: ImageView = itemView.findViewById(R.id.ivArticleImage)
          val tvSource: TextView = itemView.findViewById(R.id.tvSource)
          val tvTitle: TextView = itemView.findViewById(R.id.tvTitle)
          val tvDescription: TextView = itemView.findViewById(R.id.tvDescription)
          val tvPublishedAt: TextView = itemView.findViewById(R.id.tvPublishedAt)
+
      }
 
 
@@ -55,7 +56,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
         val article=differ.currentList[position]
 
 
-           // Glide.with(this).load(article.urlToImage).into(holder.imageView)
+
+           Glide.with(holder.imageView.context).load(article.urlToImage).into(holder.imageView)
           //holder.imageView.setImageResource(holder.imageView)
             holder.tvSource.text = article.source.name
             holder.tvTitle.text = article.title

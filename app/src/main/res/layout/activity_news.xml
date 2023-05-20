@@ -16,7 +16,7 @@
     app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
     app:layout_constraintHorizontal_bias="0.5"
     >
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/newsNavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
