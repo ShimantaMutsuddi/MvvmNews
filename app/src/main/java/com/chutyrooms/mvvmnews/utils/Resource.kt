@@ -6,9 +6,7 @@ package com.chutyrooms.mvvmnews.utils
 
 /*** Sealed class is a abstract class but we can define which
  * classes are allowed to inherit from that Resource class*/
-sealed class Resource<T>(
-    val data:T?=null,
-    val message:String?=null
+sealed class Resource<T>(val data:T?=null, val message:String?=null
 
 ) {
 
