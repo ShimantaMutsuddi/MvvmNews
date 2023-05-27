@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chutyrooms.mvvmnews.R
 import com.chutyrooms.mvvmnews.adapters.NewsAdapter
+import com.chutyrooms.mvvmnews.databinding.FragmentBreakingNewsBinding
 
 import com.chutyrooms.mvvmnews.ui.NewsActivity
 import com.chutyrooms.mvvmnews.ui.NewsViewModel
@@ -23,6 +24,9 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     lateinit var newsAdapter: NewsAdapter
     lateinit var rvBreakingNews: RecyclerView
     lateinit var paginationProgressBar: ProgressBar
+    private var _binding: FragmentBreakingNewsBinding?=null
+    private val binding get() = _binding!!
+
 
     //private  var fragmentBreakingNewsBinding : FragmentBreakingNewsBinding? = null
     private  val TAG = "BreakingNewsFragment"
@@ -76,10 +80,10 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }*/
 
     private fun hideProgressBar() {
-        paginationProgressBar?.visibility=View.INVISIBLE
+        _binding!!.paginationProgressBar?.visibility=View.INVISIBLE
     }
     private fun showProgressBar() {
-       paginationProgressBar?.visibility=View.VISIBLE
+        _binding!!.paginationProgressBar?.visibility=View.VISIBLE
     }
 
     override fun onCreateView(
@@ -87,18 +91,22 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val layout =  inflater.inflate(R.layout.fragment_breaking_news, container, false)
+        /*val layout =  inflater.inflate(R.layout.fragment_breaking_news, container, false)
         rvBreakingNews=layout.findViewById(R.id.rvBreakingNews)
         paginationProgressBar=layout.findViewById(R.id.paginationProgressBar)
-
-
-
-        return layout
+        return layout*/
+        _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
+    }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun setupRecyclerView(){
         newsAdapter= NewsAdapter()
-        rvBreakingNews?.apply{
+        binding.rvBreakingNews?.apply{
             adapter=newsAdapter
             layoutManager=LinearLayoutManager(activity)
 
