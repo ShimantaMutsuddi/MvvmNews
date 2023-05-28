@@ -6,9 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.chutyrooms.mvvmnews.R
 import com.chutyrooms.mvvmnews.adapters.NewsAdapter
 import com.chutyrooms.mvvmnews.databinding.FragmentBreakingNewsBinding
@@ -22,8 +21,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     lateinit var viewModel:NewsViewModel
     lateinit var newsAdapter: NewsAdapter
-    lateinit var rvBreakingNews: RecyclerView
-    lateinit var paginationProgressBar: ProgressBar
+    //lateinit var rvBreakingNews: RecyclerView
+   // lateinit var paginationProgressBar: ProgressBar
     private var _binding: FragmentBreakingNewsBinding?=null
     private val binding get() = _binding!!
 
@@ -40,6 +39,22 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
         viewModel= (activity as NewsActivity).viewModel!!
         setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle=Bundle().apply {
+                putSerializable("article",it)
+            }
+
+            /*findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment,
+                bundle
+            )*/
+            findNavController().navigate(
+                R.id.action_breakingNewsFragment_to_articleFragment,
+                bundle
+            )
+
+        }
 
         viewModel.breakingNews.observe(viewLifecycleOwner){ response ->
 
@@ -96,8 +111,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         paginationProgressBar=layout.findViewById(R.id.paginationProgressBar)
         return layout*/
         _binding = FragmentBreakingNewsBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
     override fun onDestroyView() {
         super.onDestroyView()
@@ -106,7 +120,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private fun setupRecyclerView(){
         newsAdapter= NewsAdapter()
-        binding.rvBreakingNews?.apply{
+        _binding?.rvBreakingNews?.apply{
             adapter=newsAdapter
             layoutManager=LinearLayoutManager(activity)
 
