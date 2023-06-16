@@ -11,6 +11,7 @@ import com.chutyrooms.mvvmnews.R
 import com.chutyrooms.mvvmnews.databinding.FragmentArticleBinding
 import com.chutyrooms.mvvmnews.ui.NewsActivity
 import com.chutyrooms.mvvmnews.ui.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class ArticleFragment : Fragment(R.layout.fragment_article) {
@@ -27,10 +28,15 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         val article=args.article
 
-        _binding?.webView.apply {
+        binding?.webView.apply {
             this!!.webViewClient = WebViewClient()
 
-            loadUrl(article.url)
+            loadUrl(article.url.toString())
+        }
+
+        binding?.fab?.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view,"Article saved successfully",Snackbar.LENGTH_SHORT)
         }
 
     }

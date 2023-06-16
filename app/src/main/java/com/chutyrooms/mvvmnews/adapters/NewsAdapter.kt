@@ -1,5 +1,6 @@
 package com.chutyrooms.mvvmnews.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.*
 import com.chutyrooms.mvvmnews.R
 import com.chutyrooms.mvvmnews.models.Article
 
@@ -57,12 +59,12 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>(){
 
 
 
-           Glide.with(holder.imageView.context).load(article.urlToImage).into(holder.imageView)
-          //holder.imageView.setImageResource(holder.imageView)
-            holder.tvSource.text = article.source.name
-            holder.tvTitle.text = article.title
-            holder.tvDescription.text = article.description
-            holder.tvPublishedAt.text = article.publishedAt
+           with(holder.imageView.context).load(article?.urlToImage).into(holder.imageView)
+
+            holder.tvSource.text = article.source?.name
+            holder.tvTitle.text = article?.title
+            holder.tvDescription.text = article?.description
+            holder.tvPublishedAt.text = article?.publishedAt
 
             holder.itemView.setOnClickListener {
                 onItemClickListener?.let { it(article) }
