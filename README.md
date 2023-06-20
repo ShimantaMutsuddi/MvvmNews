@@ -6,12 +6,15 @@ search articles, and save your favorites
 
 
 ## Screenshots
-<img src=".\app/screenshot/Breaking_News.jpeg" width="25%">
-<img src=".\app/screenshot/Saved_News.jpeg" width="25%">
- <br/>
-<img src=".\app/screenshot/Search_News.jpeg" width="25%">
-<img src=".\app/screenshot/webview.jpeg" width="25%">
- <br/>
+
+<div>
+<img src=".\app/screenshot/Breaking_News.jpeg" alt="Breaking News " width="25%">
+<img src=".\app/screenshot/Saved_News.jpeg" alt="Saved News " width="25%">
+</div>
+<div>
+<img src=".\app/screenshot/Search_News.jpeg" alt="Search News " width="25%">
+<img src=".\app/screenshot/webview.jpeg" alt="Article " width="25%">
+</div>
 
 
 
