@@ -1,6 +1,7 @@
 package com.chutyrooms.mvvmnews.ui.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
     val args: ArticleFragmentArgs by navArgs()
      var _binding: FragmentArticleBinding?=null
     private val binding get() = _binding!!
+    private  val TAG = "ArticleFragment"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +32,8 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
 
         binding?.webView.apply {
             this!!.webViewClient = WebViewClient()
+
+            Log.d(TAG, "onViewCreated: "+article.url)
 
             loadUrl(article.url.toString())
         }

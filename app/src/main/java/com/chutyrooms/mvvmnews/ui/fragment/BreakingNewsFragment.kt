@@ -51,7 +51,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         newsAdapter.setOnItemClickListener {
 
             Log.d(TAG, "onClick ->BreakingNews: "+it.toString())
-            val bundle=Bundle().apply {
+            var bundle=Bundle().apply {
                 putSerializable("article",it)
             }
 
@@ -59,7 +59,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 R.id.action_breakingNewsFragment_to_articleFragment,
                 bundle
             )*/
-            findNavController().navigate(
+             findNavController().navigate(
                 R.id.action_breakingNewsFragment_to_articleFragment,
                 bundle
             )
@@ -73,8 +73,8 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles.toList())
-                        val totalPages=newsResponse.totalResults / QUERY_PAGE_SIZE + 2
+                        newsAdapter.differ.submitList(newsResponse.articles?.toList())
+                        val totalPages= newsResponse.totalResults!! / QUERY_PAGE_SIZE + 2
                         isLastPage= viewModel.breakingNewsPage==totalPages
 
                         if (isLastPage)
